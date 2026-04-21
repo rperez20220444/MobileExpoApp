@@ -1,0 +1,52 @@
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+
+const phrases = [
+  "Nunca te rindas",
+  "El éxito es la suma de pequeños esfuerzos",
+  "Cree en ti",
+  "Todo es posible",
+  "Haz que suceda",
+  "Sigue adelante",
+  "Confía en el proceso",
+  "Hoy es tu día",
+  "Sin miedo al éxito",
+  "Disciplina mata talento"
+];
+
+export default function MotivationalScreen({ goBack }) {
+  const [phrase, setPhrase] = useState(phrases[0]);
+
+  const change = () => {
+    const random = phrases[Math.floor(Math.random()*phrases.length)];
+    setPhrase(random);
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.phrase}>{phrase}</Text>
+
+      <TouchableOpacity style={styles.button} onPress={change}>
+        <Text style={styles.text}>Nueva frase</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.back} onPress={goBack}>← Volver</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container:{ flex:1, justifyContent:'center', padding:20, backgroundColor:"#F5F7FA" },
+  phrase:{
+    fontSize:24,
+    textAlign:'center',
+    marginBottom:20
+  },
+  button:{
+    backgroundColor:"#50E3C2",
+    padding:15,
+    borderRadius:10
+  },
+  text:{ textAlign:'center', color:"#FFF" },
+  back:{ textAlign:'center', marginTop:20 }
+});

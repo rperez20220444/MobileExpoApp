@@ -1,0 +1,89 @@
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+
+export default function CalculatorScreen({ goBack }) {
+  const [value, setValue] = useState('');
+
+  const handlePress = (val) => setValue(value + val);
+
+  const calculate = () => {
+    try {
+      if (value.includes('/0')) return alert('No dividir entre 0');
+      setValue(eval(value).toString());
+    } catch {
+      alert('Error');
+    }
+  };
+
+  const buttons = ['7','8','9','/',
+                   '4','5','6','*',
+                   '1','2','3','-',
+                   '0','.','=','+'];
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.display}>{value || '0'}</Text>
+
+      <View style={styles.grid}>
+        {buttons.map((btn, i) => (
+          <TouchableOpacity
+            key={i}
+            style={styles.btn}
+            onPress={() => btn === '=' ? calculate() : handlePress(btn)}
+          >
+            <Text style={styles.btnText}>{btn}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      <TouchableOpacity style={styles.clear} onPress={() => setValue('')}>
+        <Text style={styles.clearText}>C</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={goBack}>
+        <Text style={styles.back}>← Volver</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex:1, padding:20, backgroundColor:"#F5F7FA" },
+  display: {
+    fontSize:40,
+    textAlign:'right',
+    marginBottom:20
+  },
+  grid: {
+    flexDirection:'row',
+    flexWrap:'wrap',
+    justifyContent:'space-between'
+  },
+  btn: {
+    width:'22%',
+    backgroundColor:'#4A90E2',
+    padding:20,
+    marginVertical:5,
+    borderRadius:10
+  },
+  btnText: {
+    color:'#FFF',
+    textAlign:'center',
+    fontSize:18
+  },
+  clear: {
+    backgroundColor:'#FF5A5F',
+    padding:15,
+    borderRadius:10,
+    marginTop:10
+  },
+  clearText: {
+    color:'#FFF',
+    textAlign:'center'
+  },
+  back: {
+    textAlign:'center',
+    marginTop:15,
+    color:'#333'
+  }
+});
