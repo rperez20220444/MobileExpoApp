@@ -29,29 +29,3 @@ Muestra frases motivacionales aleatorias con opción de cambio.
 ```bash
 npm install
 npx expo start
-
-### 🧮 Calculadora
-Permite realizar operaciones matemáticas básicas.
-
-![Calculadora](assets/screenshots/calculator.png)
-
----
-
-### 🎲 Generador de Nombres
-Genera nombres aleatorios.
-
-![Generador](assets/screenshots/names.png)
-
----
-
-### 👣 Contador de Pasos
-Simula un contador de pasos.
-
-![Pasos](assets/screenshots/steps.png)
-
----
-
-### 💬 Frases Motivacionales
-Muestra frases motivacionales.
-
-![Motivacional](assets/screenshots/motivational.png)
