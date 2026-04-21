@@ -1,39 +1,34 @@
-# Welcome to your Expo app 👋
+# MobileExpoApp
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicación móvil desarrollada en React Native utilizando Expo.
 
-## Get started
+## 📱 Descripción
+Este proyecto consiste en un conjunto de aplicaciones móviles básicas diseñadas para demostrar el uso de componentes, estados y lógica en React Native.
 
-1. Install dependencies
+## 🚀 Funcionalidades
 
-   ```bash
-   npm install
-   ```
+### 🧮 Calculadora
+Permite realizar operaciones matemáticas básicas como suma, resta, multiplicación y división.
 
-2. Start the app
+### 🎲 Generador de Nombres
+Genera nombres aleatorios y mantiene un historial durante la sesión.
 
-   ```bash
-   npx expo start
-   ```
+### 👣 Contador de Pasos
+Simula un contador de pasos con opciones para incrementar y reiniciar.
 
-In the output, you'll find options to open the app in a
+### 💬 Frases Motivacionales
+Muestra frases motivacionales aleatorias con opción de cambio.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠️ Tecnologías utilizadas
+- React Native
+- Expo
+- JavaScript
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## ▶️ Cómo ejecutar el proyecto
 
 ```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+npm install
+npx expo start
 
 ## Learn more
 
