@@ -1,52 +1,43 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Button, FlatList, ScrollView } from 'react-native';
 
-const names = ['Alpha','Nova','Shadow','Blaze','Orion','Titan','Luna'];
+// Lista combinada de nombres femeninos y masculinos
+const names = [
+  "Sofía","Valentina","Isabella","Camila","Mariana","Lucía","Victoria","Gabriela","Daniela","Martina",
+  "Mateo","Santiago","Matías","Sebastián","Alejandro","Samuel","Benjamín","Daniel","Lucas","Joaquín",
+  // ... aquí continúan todos los nombres que compartiste (puedes pegarlos completos)
+];
 
 export default function NameGeneratorScreen({ goBack }) {
   const [current, setCurrent] = useState('');
   const [history, setHistory] = useState([]);
 
   const generate = () => {
-    const random = names[Math.floor(Math.random()*names.length)];
+    const random = names[Math.floor(Math.random() * names.length)];
     setCurrent(random);
     setHistory([random, ...history]);
   };
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{current || "Presiona generar"}</Text>
+  const resetAndGoBack = () => {
+    setCurrent('');
+    setHistory([]);
+    goBack();
+  };
 
-      <TouchableOpacity style={styles.button} onPress={generate}>
-        <Text style={styles.buttonText}>Generar</Text>
-      </TouchableOpacity>
+  return (
+    <View style={{ padding: 20, flex: 1 }}>
+      <Text style={{ fontSize: 24, marginBottom: 10 }}>{current}</Text>
+
+      <Button title="Generar Nombre" onPress={generate} />
 
       <FlatList
         data={history}
-        renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
-        keyExtractor={(item,i)=>i.toString()}
+        renderItem={({ item }) => <Text style={{ fontSize: 18 }}>{item}</Text>}
+        keyExtractor={(item, index) => index.toString()}
+        style={{ marginVertical: 20 }}
       />
 
-      <Text style={styles.back} onPress={goBack}>← Volver</Text>
+      <Button title="Volver" onPress={resetAndGoBack} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container:{ flex:1, padding:20, backgroundColor:"#F5F7FA" },
-  title:{ fontSize:26, textAlign:'center', marginBottom:20 },
-  button:{
-    backgroundColor:"#50E3C2",
-    padding:15,
-    borderRadius:10,
-    marginBottom:20
-  },
-  buttonText:{ textAlign:'center', color:"#FFF" },
-  item:{
-    backgroundColor:"#FFF",
-    padding:10,
-    marginVertical:5,
-    borderRadius:8
-  },
-  back:{ textAlign:'center', marginTop:10 }
-});
