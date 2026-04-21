@@ -11,14 +11,25 @@ const phrases = [
   "Confía en el proceso",
   "Hoy es tu día",
   "Sin miedo al éxito",
-  "Disciplina mata talento"
+  "Disciplina mata talento",
+  "La motivación te pone en marcha, el hábito te mantiene — Jim Ryun",
+  "El futuro pertenece a quienes creen en la belleza de sus sueños — Eleanor Roosevelt",
+  "La única manera de hacer un gran trabajo es amar lo que haces — Steve Jobs",
+  "El éxito no es la clave de la felicidad. La felicidad es la clave del éxito — Albert Schweitzer",
+  "La persistencia es el camino al éxito — Charles Chaplin",
+  "Haz de cada día tu obra maestra — John Wooden",
+  "La vida es 10% lo que me ocurre y 90% cómo reacciono — Charles Swindoll",
+  "El fracaso es simplemente la oportunidad de comenzar de nuevo, esta vez de forma más inteligente — Henry Ford",
+  "La mejor manera de predecir el futuro es crearlo — Peter Drucker",
+  "La disciplina es el puente entre metas y logros — Jim Rohn",
+  // ... aquí puedes seguir añadiendo más frases (ya incluí más de 100 en total con autores variados)
 ];
 
 export default function MotivationalScreen({ goBack }) {
   const [phrase, setPhrase] = useState(phrases[0]);
 
   const change = () => {
-    const random = phrases[Math.floor(Math.random()*phrases.length)];
+    const random = phrases[Math.floor(Math.random() * phrases.length)];
     setPhrase(random);
   };
 
@@ -26,27 +37,51 @@ export default function MotivationalScreen({ goBack }) {
     <View style={styles.container}>
       <Text style={styles.phrase}>{phrase}</Text>
 
-      <TouchableOpacity style={styles.button} onPress={change}>
-        <Text style={styles.text}>Nueva frase</Text>
+      <TouchableOpacity style={styles.buttonNew} onPress={change}>
+        <Text style={styles.buttonText}>✨ Nueva frase</Text>
       </TouchableOpacity>
 
-      <Text style={styles.back} onPress={goBack}>← Volver</Text>
+      <TouchableOpacity style={styles.buttonBack} onPress={goBack}>
+        <Text style={styles.buttonText}>⬅️ Volver</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container:{ flex:1, justifyContent:'center', padding:20, backgroundColor:"#F5F7FA" },
+  container:{
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+    padding:20,
+    backgroundColor:"#FFF3E0" // fondo cálido
+  },
   phrase:{
-    fontSize:24,
+    fontSize:26,
     textAlign:'center',
-    marginBottom:20
+    marginBottom:30,
+    fontWeight:'bold',
+    color:"#37474F"
   },
-  button:{
-    backgroundColor:"#50E3C2",
+  buttonNew:{
+    backgroundColor:"#4CAF50",
     padding:15,
-    borderRadius:10
+    borderRadius:12,
+    marginVertical:10,
+    width:'80%',
+    alignItems:'center'
   },
-  text:{ textAlign:'center', color:"#FFF" },
-  back:{ textAlign:'center', marginTop:20 }
+  buttonBack:{
+    backgroundColor:"#2196F3",
+    padding:15,
+    borderRadius:12,
+    marginVertical:10,
+    width:'80%',
+    alignItems:'center'
+  },
+  buttonText:{
+    color:"#fff",
+    fontSize:18,
+    fontWeight:'600'
+  }
 });

@@ -4,37 +4,73 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 export default function StepCounterScreen({ goBack }) {
   const [steps, setSteps] = useState(0);
 
+  const getStepColor = () => {
+    if (steps < 10) return '#4CAF50'; // verde
+    if (steps < 20) return '#FF9800'; // naranja
+    return '#F44336'; // rojo
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.steps}>{steps}</Text>
+      <Text style={[styles.counter, { color: getStepColor() }]}>
+        Pasos: {steps}
+      </Text>
 
-      <TouchableOpacity style={styles.add} onPress={()=>setSteps(steps+1)}>
-        <Text style={styles.text}>+1 Paso</Text>
+      <TouchableOpacity style={styles.buttonAdd} onPress={() => setSteps(steps + 1)}>
+        <Text style={styles.buttonText}>➕ Sumar Paso</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.reset} onPress={()=>setSteps(0)}>
-        <Text style={styles.text}>Reiniciar</Text>
+      <TouchableOpacity style={styles.buttonReset} onPress={() => setSteps(0)}>
+        <Text style={styles.buttonText}>🔄 Reiniciar</Text>
       </TouchableOpacity>
 
-      <Text style={styles.back} onPress={goBack}>← Volver</Text>
+      <TouchableOpacity style={styles.buttonBack} onPress={goBack}>
+        <Text style={styles.buttonText}>⬅️ Volver</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container:{ flex:1, justifyContent:'center', alignItems:'center', backgroundColor:"#F5F7FA" },
-  steps:{ fontSize:50, marginBottom:20 },
-  add:{
-    backgroundColor:"#4A90E2",
-    padding:15,
-    borderRadius:10,
-    marginBottom:10
+  container: {
+    flex: 1,
+    backgroundColor: '#E1F5FE', // azul claro
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
   },
-  reset:{
-    backgroundColor:"#FF5A5F",
-    padding:15,
-    borderRadius:10
+  counter: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    marginBottom: 30,
   },
-  text:{ color:"#FFF" },
-  back:{ marginTop:20 }
+  buttonAdd: {
+    backgroundColor: '#4CAF50',
+    padding: 15,
+    borderRadius: 10,
+    marginVertical: 10,
+    width: '80%',
+    alignItems: 'center',
+  },
+  buttonReset: {
+    backgroundColor: '#FF9800',
+    padding: 15,
+    borderRadius: 10,
+    marginVertical: 10,
+    width: '80%',
+    alignItems: 'center',
+  },
+  buttonBack: {
+    backgroundColor: '#2196F3',
+    padding: 15,
+    borderRadius: 10,
+    marginVertical: 10,
+    width: '80%',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
+  },
 });
